@@ -48,7 +48,7 @@ Content lives in `data/portfolio.ts` and `data/projects.ts`, kept separate from 
 
 ## Contact Section
 
-No SMTP or email-provider account is configured, so instead of a contact form, `components/sections/Contact.tsx` shows direct links — email, phone, GitHub, LinkedIn — that all work with zero backend (`mailto:`, `tel:`, and plain external links).
+No SMTP or email-provider account is configured, so instead of a contact form, `components/sections/Contact.tsx` shows direct links — email, GitHub, LinkedIn — that all work with zero backend (`mailto:` and plain external links). A phone number is present in `data/portfolio.ts` (`personalInfo.phone`) but intentionally not rendered anywhere yet.
 
 If you'd rather add a real contact form later, wire up a provider and it'll fit the existing section layout:
 
@@ -83,7 +83,8 @@ Set `NEXT_PUBLIC_SITE_URL` as an environment variable on your hosting platform b
 
 The source resume had no listed projects and no GitHub/LinkedIn URLs. These were resolved as follows — double-check before publishing:
 
-- **Projects** (`data/projects.ts`): all 3 entries are sample placeholders (`isPlaceholder: true`), visibly labeled "Sample" in the UI. Replace them with real projects, or set `isPlaceholder: false` and fill in `githubUrl`/`liveUrl` once you have real links.
+- **Projects** (`data/projects.ts`): 3 real entries — Admin Dashboard, Marketing Landing Pages, Business Website — written from the project *types* described, without specific client names, screenshots, or GitHub/live links (none were provided). Add `githubUrl`/`liveUrl` and swap in real screenshots/specifics once you're ready to publish.
+- **Phone number**: kept in `data/portfolio.ts` (`personalInfo.phone`) but not shown on the page. Add it back to `components/sections/Contact.tsx` (and `data/portfolio.ts`'s `socialLinks`) whenever you're ready to publish it.
 - **Site URL**: set `NEXT_PUBLIC_SITE_URL` in `.env.local` / your hosting provider to your real domain.
 - **Favicon**: `app/favicon.ico` is still the default Next.js icon — replace it with your own.
 - **Open Graph image**: `app/opengraph-image.tsx` generates a simple text-based social preview image; customize or replace with a designed image if you want.

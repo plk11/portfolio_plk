@@ -1,14 +1,17 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink, FolderGit2, Github } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectModal } from "@/components/sections/ProjectModal";
 import { projectCategories, projects } from "@/data/projects";
+import { socialLinks } from "@/data/portfolio";
 import { cn } from "@/lib/cn";
 import type { Project } from "@/types";
+
+const github = socialLinks.find((link) => link.icon === "github");
 
 function ProjectCard({
   project,
@@ -19,14 +22,7 @@ function ProjectCard({
 }) {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-        {project.isPlaceholder ? (
-          <span className="shrink-0 rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent">
-            Sample
-          </span>
-        ) : null}
-      </div>
+      <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
 
       <p className="mt-3 flex-1 text-sm leading-6 text-muted-foreground">{project.description}</p>
 
@@ -77,6 +73,34 @@ function ProjectCard({
   );
 }
 
+function EmptyState() {
+  return (
+    <Reveal>
+      <div className="mt-10 flex flex-col items-center rounded-2xl border border-dashed border-border bg-card px-6 py-16 text-center">
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-accent">
+          <FolderGit2 className="h-6 w-6" />
+        </span>
+        <p className="mt-4 text-base font-medium text-foreground">Projects are on their way</p>
+        <p className="mt-2 max-w-sm text-sm leading-6 text-muted-foreground">
+          I&apos;m preparing case studies for my recent work. Check back soon, or take a
+          look at my code in the meantime.
+        </p>
+        {github ? (
+          <a
+            href={github.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            <Github className="h-4 w-4" />
+            View GitHub
+          </a>
+        ) : null}
+      </div>
+    </Reveal>
+  );
+}
+
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState<(typeof projectCategories)[number]>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -85,8 +109,6 @@ export function Projects() {
     if (activeCategory === "All") return projects;
     return projects.filter((project) => project.categories.includes(activeCategory));
   }, [activeCategory]);
-
-  const allPlaceholder = projects.every((project) => project.isPlaceholder);
 
   return (
     <section id="projects" className="section-container py-20 md:py-28">
@@ -98,42 +120,39 @@ export function Projects() {
         />
       </Reveal>
 
-      {allPlaceholder ? (
-        <Reveal>
-          <p className="mt-6 rounded-xl border border-dashed border-border bg-muted px-4 py-3 text-sm text-muted-foreground">
-            These are sample placeholders — swap them for real projects in{" "}
-            <code className="rounded bg-card px-1.5 py-0.5 font-mono text-xs">data/projects.ts</code>.
-          </p>
-        </Reveal>
-      ) : null}
-
-      <Reveal delay={80}>
-        <div className="mt-8 flex flex-wrap gap-2">
-          {projectCategories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-                activeCategory === category
-                  ? "border-accent bg-accent text-accent-foreground"
-                  : "border-border text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </Reveal>
-
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredProjects.map((project, index) => (
-          <Reveal key={project.id} delay={index * 60}>
-            <ProjectCard project={project} onSelect={setSelectedProject} />
+      {projects.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <>
+          <Reveal delay={80}>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {projectCategories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setActiveCategory(category)}
+                  className={cn(
+                    "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                    activeCategory === category
+                      ? "border-accent bg-accent text-accent-foreground"
+                      : "border-border text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </Reveal>
-        ))}
-      </div>
+
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects.map((project, index) => (
+              <Reveal key={project.id} delay={index * 60}>
+                <ProjectCard project={project} onSelect={setSelectedProject} />
+              </Reveal>
+            ))}
+          </div>
+        </>
+      )}
 
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>

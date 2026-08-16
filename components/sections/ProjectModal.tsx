@@ -47,16 +47,9 @@ export function ProjectModal({
         className="max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-card p-6 sm:p-8"
       >
         <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 id="project-modal-title" className="text-xl font-semibold text-foreground">
-              {project.title}
-            </h3>
-            {project.isPlaceholder ? (
-              <span className="mt-2 inline-block rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-accent">
-                Sample project — replace with your work
-              </span>
-            ) : null}
-          </div>
+          <h3 id="project-modal-title" className="text-xl font-semibold text-foreground">
+            {project.title}
+          </h3>
           <button
             ref={closeButtonRef}
             type="button"

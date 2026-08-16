@@ -33,7 +33,8 @@ export type ProjectCategory =
   | "React"
   | "Next.js"
   | "Dashboard"
-  | "Landing Page";
+  | "Landing Page"
+  | "Website";
 
 export interface Project {
   id: string;
@@ -46,5 +47,4 @@ export interface Project {
   results?: string;
   githubUrl?: string;
   liveUrl?: string;
-  isPlaceholder?: boolean;
 }

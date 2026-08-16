@@ -1,69 +1,54 @@
 import type { Project } from "@/types";
 
-/**
- * No projects were listed on the source resume. These entries are sample
- * placeholders only — visibly flagged via `isPlaceholder` in the UI (a
- * "Sample" badge on the card and "replace with your work" note in the
- * modal) — so replace them with real project data before publishing.
- */
 export const projects: Project[] = [
   {
-    id: "sample-dashboard",
-    title: "Sample Project — Admin Dashboard",
+    id: "admin-dashboard",
+    title: "Admin Dashboard",
     description:
-      "An internal admin dashboard for managing users, orders, and analytics in one place, replacing a set of disconnected spreadsheets the team relied on before.",
-    role: "Built the dashboard front-end end-to-end — component architecture, data tables, charts, and role-based views — working from Figma designs.",
+      "An internal admin dashboard for managing users, content, and day-to-day operations, built as a production React/Next.js application with a component-driven UI.",
+    role: "Built the dashboard front end — component architecture, data tables, charts, and role-based views — and integrated it with REST APIs for live data.",
     technologies: ["React.js", "Next.js", "Tailwind CSS", "Redux Toolkit"],
-    categories: ["Dashboard", "React"],
+    categories: ["Dashboard", "React", "Next.js"],
     keyFeatures: [
-      "Sortable, filterable data tables for users and orders",
-      "Interactive charts summarizing daily and monthly activity",
-      "Role-based views that show or hide sections based on permissions",
-      "Dark mode and a responsive layout down to tablet width",
+      "Sortable, filterable data tables for managing records at scale",
+      "Charts and summary views for day-to-day activity",
+      "Role-based views that adapt to what each user is allowed to see",
+      "Responsive layout that holds up down to tablet width",
     ],
-    results:
-      "Cut the time it took the ops team to find and act on an order from several minutes of spreadsheet searching to a few seconds.",
-    githubUrl: undefined,
-    liveUrl: undefined,
-    isPlaceholder: true,
   },
   {
-    id: "sample-landing",
-    title: "Sample Project — Marketing Landing Page",
+    id: "marketing-landing-pages",
+    title: "Marketing Landing Pages",
     description:
-      "A conversion-focused marketing landing page for a SaaS product launch, built for speed and search visibility from day one.",
-    role: "Implemented the full page in Next.js from a static design file, including SEO metadata, animations, and the responsive layout.",
-    technologies: ["Next.js", "TypeScript", "CSS Modules"],
+      "A set of conversion-focused marketing and product landing pages, built with SEO and page speed as first-class requirements rather than an afterthought.",
+    role: "Implemented the pages in Next.js from design files, including SEO metadata, structured content, and a fully responsive layout.",
+    technologies: ["Next.js", "React.js", "Tailwind CSS", "CSS Modules"],
     categories: ["Landing Page", "Next.js"],
     keyFeatures: [
       "Server-rendered pages for fast first paint and strong SEO",
-      "Scroll-triggered section animations that respect reduced motion",
-      "Fully responsive hero, feature, and pricing sections",
       "Structured metadata and Open Graph tags for social sharing",
+      "Semantic, accessible markup with a clean heading hierarchy",
+      "Fully responsive hero, feature, and CTA sections",
     ],
-    results: "Shipped with a 95+ Lighthouse performance score on mobile.",
-    githubUrl: undefined,
-    liveUrl: undefined,
-    isPlaceholder: true,
+    results:
+      "Ran technical SEO audits on each page — metadata, heading structure, image alt text, load performance — and fixed issues found along the way.",
   },
   {
-    id: "sample-app",
-    title: "Sample Project — API-Driven Web App",
+    id: "business-website",
+    title: "Business Website",
     description:
-      "A React application for tracking and managing personal tasks and projects, backed by a REST API with real-time-feeling updates.",
-    role: "Built the front-end architecture, including the authentication flow, API integration layer, and global state management.",
-    technologies: ["React.js", "Zustand", "REST APIs", "Firebase"],
-    categories: ["React"],
+      "A full multi-page business website covering everything from information architecture to on-page SEO, built to be fast, accessible, and easy to maintain.",
+    role: "Owned the front-end build end-to-end and ran SEO/performance audits across the site post-launch.",
+    technologies: ["React.js", "Next.js", "REST APIs", "Tailwind CSS"],
+    categories: ["Website", "Next.js"],
     keyFeatures: [
-      "Email/password authentication with persisted sessions",
-      "Optimistic UI updates for creating and completing tasks",
-      "Reusable form and modal components shared across the app",
-      "Cached data for the most recently viewed lists to smooth over slow connections",
+      "Reusable page and section components shared across the site",
+      "REST API integration for dynamic content",
+      "On-page SEO — metadata, semantic HTML, and structured headings",
+      "Performance tuning for loading speed and Core Web Vitals",
     ],
-    results: "Brought perceived action latency to near-zero for common actions like completing a task.",
-    githubUrl: undefined,
-    liveUrl: undefined,
-    isPlaceholder: true,
+    results:
+      "Audited the site with Lighthouse and browser dev tools, then addressed the SEO and performance issues that came out of it.",
   },
 ];
 
@@ -73,4 +58,5 @@ export const projectCategories = [
   "Next.js",
   "Dashboard",
   "Landing Page",
+  "Website",
 ] as const;
