@@ -1,6 +1,6 @@
 # Palak Dhaliwal — Frontend Developer Portfolio
 
-A production-quality personal portfolio built with Next.js (App Router), React, TypeScript, and Tailwind CSS v4, generated strictly from [Palak Dhaliwal's resume](public/Palak_Dhaliwal_Frontend_Developer_.pdf).
+A production-quality personal portfolio built with Next.js (App Router), React, TypeScript, and Tailwind CSS v4, generated strictly from [Palak Dhaliwal's resume](public/Palak Dhaliwal Resume.pdf).
 
 ## Tech Stack
 

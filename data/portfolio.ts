@@ -18,14 +18,14 @@ export const personalInfo = {
   heroHeadline: "Frontend Developer building scalable, responsive web apps",
   heroSubheadline:
     "I turn product designs into pixel-accurate, maintainable interfaces with React.js and Next.js — from reusable component systems to REST API-driven features.",
-  resumeUrl: "/Palak_Dhaliwal_Frontend_Developer_.pdf",
+  resumeUrl: "/Palak Dhaliwal Resume.pdf",
   photoUrl: "/profile.png",
 };
 
 export const socialLinks: SocialLink[] = [
   {
     label: "GitHub",
-    href: "https://github.com/Palak1115",
+    href: "https://github.com/plk11",
     icon: "github",
   },
   {
